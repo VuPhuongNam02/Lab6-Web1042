@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>lab6.3</title>
+</head>
+
+<body>
+    <h2>ĐẶT HÀNG</h2>
+    <form onsubmit="return kiem_tra()">
+        <p>
+            <label>Sản phẩm</label>
+            <input id="san_pham" />
+        </p>
+        <p>
+            <label>Loại</label>
+            <select id="loai">
+                <option></option>
+                <option value="DT">Điện thoại</option>
+                <option value="MT">Máy tính</option>
+            </select>
+        </p>
+        <p>
+            <label>Đơn giá</label>
+            <input id="don_gia" />
+        </p>
+        <p>
+            <label>Nơi nhận hàng</label>
+            <input type="radio" name="dia_chi" onclick="hien_thi(false)" />Nội thành
+            <input type="radio" name="dia_chi" onclick="hien_thi(true)" />Ngoại thành
+        </p>
+        <p id="phi_vc" style="display:none">
+            <label>Phí vận chuyển</label>
+            <input value="100000" />
+        </p>
+        <hr />
+        <button>Đặt mua</button>
+    </form>
+
+    <script>
+        function hien_thi(visible) {
+            var phi_vc = document.getElementById("phi_vc");
+            phi_vc.style.display = visible ? "" : "none";
+        }
+
+        function kiem_tra() {
+            //check sản phẩm
+            var sp = document.getElementById('san_pham');
+            if (sp.value.length == 0) {
+                alert('Vui lòng nhập tên sản phẩm!');
+                return false;
+            }
+
+            //check đơn giá
+            var gia = document.getElementById('don_gia');
+            if (isNaN(gia.value)) {
+                alert('Vui lòng nhập số!')
+                return false;
+            } else if (parseFloat(gia.value) <= 0) {
+                alert('Vui lòng nhập số dương!');
+                return false;
+            }
+
+            //check select-box
+            var loai = document.getElementById('loai');
+            if (loai.value.length == 0) {
+                alert('Vui lòng chọn loại sản phẩm!');
+                return false;
+            }
+
+            alert('Chúc mừng bạn đã nhập đúng');
+            return true;
+
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚀Đăng ký🚀</title>
+    <style>
+        body {
+            margin: 0px;
+            padding: 0px;
+        }
+        
+        #body {
+            margin: 0 auto;
+            width: 400px;
+        }
+        
+        #khung {
+            margin-top: 100px;
+            border: 1px solid white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgb(247, 99, 148);
+            height: 380px;
+        }
+        
+        form {
+            margin-left: 20px;
+        }
+        
+        h2 {
+            text-align: center;
+            color: rgb(247, 99, 148);
+        }
+        
+        .button {
+            background-color: rgb(247, 99, 148);
+            border: none;
+            width: 100px;
+            height: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="body">
+        <div id="khung">
+            <form onsubmit="return kiemtra()">
+                <h2>🚀 Form Đăng ký 🚀</h2>
+                <p>
+                    <label>Họ</label>
+                    <input type="text" id="ho">
+                </p>
+                <p>
+                    <label>Tên</label>
+                    <input type="text" id="ten">
+                </p>
+                <p>
+                    Ngày sinh:<input type="date" id="day">
+                </p>
+                <p>
+                    Gioi tính: <input type="radio" name="gioitinh">Nam
+                    <input type="radio" name="gioitinh">Nữ
+                </p>
+                <p>
+                    Số điện thoại: <input type="text" id="sodienthoai">
+                </p>
+                <p>
+                    Sở thích: <input type="checkbox" name="sothich" onclick="hienthi()">Đọc sách
+                    <input type="checkbox" name="sothich" onclick="hienthi()">Nghe nhạc
+                    <input type="checkbox" name="sothich" onclick="hienthi()">Khác
+                </p>
+                <p id="sothich_khac" style="display: none;">
+                    <input type="text" placeholder="nhập sở thích của bạn " id="nhap">
+                </p>
+                <button class="button">Đăng ký</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        function hienthi() {
+            //Nếu chọn Sở thích khác thì ô nhập 
+            //hiện ra để người dùng điền sở thích của mình.
+            var soThich = document.getElementsByName('sothich')
+            var sothich_khac = document.getElementById('sothich_khac')
+            if (soThich[2].checked) {
+                sothich_khac.style.display = "block"
+            } else {
+                sothich_khac.style.display = "none"
+            }
+        }
+
+
+
+        function kiemtra() {
+            //Không để trống Họ, tên
+            var ho = document.getElementById('ho')
+            var ten = document.getElementById('ten')
+            if (ho.value.length == 0) {
+                alert('Không để trống Họ')
+                return false
+            }
+            if (ten.value.length == 0) {
+                alert('Không để trống tên')
+                return false
+            }
+
+            //Ngày, tháng, năm phải được chọn
+            var day = document.getElementById('day')
+            if (day.value.length == 0) {
+                alert('Ngày, tháng, năm phải được chọn')
+                return false
+            }
+
+            //giới tính phải được chọn
+            var gioiTinh = document.getElementsByName('gioitinh')
+            if (!gioiTinh[0].checked && !gioiTinh[1].checked) {
+                alert('giới tính phải được chọn')
+                return false
+            }
+
+            //Số điện thoại phải là số và từ 10 đến 11 chữ số
+            var sdt = document.getElementById('sodienthoai')
+            if (sdt.value.length < 10 || sdt.value.length > 11) {
+                alert('Số điện thoại phải là số và từ 10 đến 11 chữ số')
+                return false
+            }
+
+            //Sở thích phải được chọn ít nhất một cái.
+            var soThich = document.getElementsByName('sothich')
+            if (!soThich[0].checked && !soThich[1].checked && !soThich[2].checked) {
+                alert('Sở thích phải được chọn ít nhất một cái.')
+                return false
+            }
+
+            //nếu ko xảy ra lỗi thì đăng ký thành công
+            alert('đăng ký thành công')
+            return true;
+        }
+    </script>
+</body>
+
+</html>

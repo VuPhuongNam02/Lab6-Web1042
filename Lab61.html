@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab6.1</title>
+</head>
+
+<body>
+    <img src="anh/0.JPG" id="anh" onmouseover="fover()" onmouseout="fout()">
+    <script>
+        var out = new Image();
+        out.src = "anh/0.JPG";
+        var over = new Image();
+        over.src = "anh/1.JPG";
+        var anh = document.getElementById('anh');
+
+        function fover() {
+            anh.src = over.src
+        }
+
+        function fout() {
+            anh.src = out.src
+        }
+    </script>
+</body>
+
+</html>
